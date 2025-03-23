@@ -2,7 +2,7 @@
 Player hero = new Player("Snake");
 
 Console.SetCursorPosition(0, 0);
-Console.WriteLine($"({hero.x}, {hero.y})");
+Console.WriteLine($"({hero.x}, {hero.y})    ");
 
 Console.SetCursorPosition(hero.x, hero.y);
 Console.Write("@");
@@ -30,7 +30,7 @@ while (true)
     }
 
     Console.SetCursorPosition(0, 0);
-    Console.WriteLine($"({hero.x}, {hero.y})");
+    Console.WriteLine($"({hero.x}, {hero.y})    ");
 
     Console.SetCursorPosition(hero.x, hero.y);
     Console.Write("@");
