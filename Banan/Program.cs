@@ -19,15 +19,15 @@ while (true)
     {
         hero.x -= hero.speed;
     }
-    if (pressedKey.Key == ConsoleKey.D)
+    else if (pressedKey.Key == ConsoleKey.D)
     {
         hero.x += hero.speed;
     }
-    if (pressedKey.Key == ConsoleKey.W)
+    else if (pressedKey.Key == ConsoleKey.W)
     {
         hero.y -= hero.speed;
     }
-    if (pressedKey.Key == ConsoleKey.S)
+    else if (pressedKey.Key == ConsoleKey.S)
     {
         hero.y += hero.speed;
     }
