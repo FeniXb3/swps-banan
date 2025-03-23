@@ -14,19 +14,31 @@ while (true)
     Console.Write(" ");
     if (pressedKey.Key == ConsoleKey.A)
     {
-        hero.x -= 1;
+        if (hero.x > 0)
+        {
+            hero.x -= 1;
+        }
     }
     if (pressedKey.Key == ConsoleKey.D)
     {
-        hero.x += 1;
+        if (hero.x < Console.BufferWidth - 1)
+        {
+            hero.x += 1;
+        }
     }
     if (pressedKey.Key == ConsoleKey.W)
     {
-        hero.y -= 1;
+        if (hero.y > 0)
+        {
+            hero.y -= 1;
+        }
     }
     if (pressedKey.Key == ConsoleKey.S)
     {
-        hero.y += 1;
+        if (hero.y < Console.BufferHeight - 1)
+        {
+            hero.y += 1;
+        }
     }
 
     Console.SetCursorPosition(0, 0);
