@@ -21,13 +21,17 @@ while (true)
     ConsoleKeyInfo pressedKey = Console.ReadKey(true);
     Console.SetCursorPosition(hero.x, hero.y);
     Console.Write(" ");
-    Point direction = directionsMap.GetValueOrDefault(pressedKey.Key, new Point(0, 0));
 
-    hero.x += direction.x;
-    hero.y += direction.y;
+    if (directionsMap.ContainsKey(pressedKey.Key))
+    {
+        Point direction = directionsMap[pressedKey.Key];
 
-    hero.x = Math.Clamp(hero.x, 0, Console.BufferWidth - 1);
-    hero.y = Math.Clamp(hero.y, 0, Console.BufferHeight - 1);
+        hero.x += direction.x;
+        hero.y += direction.y;
+
+        hero.x = Math.Clamp(hero.x, 0, Console.BufferWidth - 1);
+        hero.y = Math.Clamp(hero.y, 0, Console.BufferHeight - 1);
+    }
 
     Console.SetCursorPosition(0, 0);
     Console.WriteLine($"({hero.x}, {hero.y})    ");
