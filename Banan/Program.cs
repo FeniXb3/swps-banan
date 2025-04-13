@@ -21,7 +21,7 @@ while (true)
     ConsoleKeyInfo pressedKey = Console.ReadKey(true);
     Console.SetCursorPosition(hero.x, hero.y);
     Console.Write(" ");
-    Point direction = directionsMap[pressedKey.Key];
+    Point direction = directionsMap.GetValueOrDefault(pressedKey.Key, new Point(0, 0));
 
     hero.x += direction.x;
     hero.y += direction.y;
