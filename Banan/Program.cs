@@ -19,11 +19,12 @@ while (true)
     Console.Write("@");
 
     ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-    Console.SetCursorPosition(hero.x, hero.y);
-    Console.Write(" ");
 
     if (directionsMap.ContainsKey(pressedKey.Key))
     {
+        Console.SetCursorPosition(hero.x, hero.y);
+        Console.Write(" ");
+        
         Point direction = directionsMap[pressedKey.Key];
 
         hero.x += direction.x;
