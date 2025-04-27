@@ -18,14 +18,14 @@ string[] level =
 [
     "#####################################",
     "#...................................#",
-    "#....................&.....##########",
+    "#....#...............&.....##########",
     "#..............................#",
     "#..........................#####",
+    "#........#.................#",
     "#..........................#",
-    "#..........................#",
-    "#..........................#",
-    "#..........................#",
-    "#..........................#",
+    "#..............#...........#",
+    "#..............#...........#",
+    "#..............#...........#",
     "############################",
 ];
 
@@ -64,15 +64,22 @@ while (true)
         Console.Write(cellValue);
 
         Point direction = directionsMap[pressedKey.Key];
+        Point target = element.position;
 
-        element.position.x += direction.x * element.speed;
-        element.position.y += direction.y * element.speed;
+        target.x += direction.x * element.speed;
+        target.y += direction.y * element.speed;
 
         // HACK: We have to limit y before limiting x, because we use y to get row's length
-        element.position.y = Math.Clamp(element.position.y, 0, level.Length - 1);
-        element.position.x = Math.Clamp(element.position.x, 0, level[element.position.y].Length - 1);
+        target.y = Math.Clamp(target.y, 0, level.Length - 1);
+        target.x = Math.Clamp(target.x, 0, level[target.y].Length - 1);
 
-        // element.speed += 1;
+        if (level[target.y][target.x] != '#')
+        {
+            element.position = target;
+            // element.speed += 1;
+        }
+
+
     }
 }
 
