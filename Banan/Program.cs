@@ -6,7 +6,7 @@ directionsMap.Add(ConsoleKey.D, new Point(1, 0));
 directionsMap.Add(ConsoleKey.W, new Point(0, -1));
 directionsMap.Add(ConsoleKey.S, new Point(0, 1));
 
-Point startingPoint = new Point(3, 1);
+Point startingPoint = new Point(13, 1);
 Player hero = new Player("Snake", "@");
 hero.speed = 1;
 hero.position = startingPoint;
@@ -23,6 +23,11 @@ string[] level =
     "#..........................#####",
     "#........#.................#",
     "#..........................#",
+    "#..........................#",
+    "#..........................#",
+    "#..........................#",
+    "#..........................#",
+    "#..........................#",
     "#..............#...........#",
     "#..............#...........#",
     "#..............#...........#",
@@ -36,6 +41,8 @@ foreach (string row in level)
 
 while (true)
 {
+    Console.SetCursorPosition(12, 0);
+    Console.Write(hero.speed);
     foreach (Player element in clones)
     {
         Console.SetCursorPosition(element.position.x, element.position.y);
@@ -66,8 +73,32 @@ while (true)
         Point direction = directionsMap[pressedKey.Key];
         Point target = element.position;
 
-        target.x += direction.x * element.speed;
-        target.y += direction.y * element.speed;
+        // target.x += direction.x * element.speed;
+        // target.y += direction.y * element.speed;
+
+        int signX = Math.Sign(direction.x);
+        for (int x = 1; x <= Math.Abs(direction.x * element.speed); x++)
+        {
+            int coordinateToTest = element.position.x + x * signX;
+            if (level[target.y][coordinateToTest] == '#')
+            {
+                break;
+            }
+
+            target.x = coordinateToTest;
+        }
+
+        int signY = Math.Sign(direction.y);
+        for (int y = 1; y <= Math.Abs(direction.y * element.speed); y++)
+        {
+            int coordinateToTest = element.position.y + y * signY;
+            if (level[coordinateToTest][target.x] == '#')
+            {
+                break;
+            }
+
+            target.y = coordinateToTest;
+        }
 
         // HACK: We have to limit y before limiting x, because we use y to get row's length
         target.y = Math.Clamp(target.y, 0, level.Length - 1);
@@ -76,7 +107,7 @@ while (true)
         if (level[target.y][target.x] != '#')
         {
             element.position = target;
-            // element.speed += 1;
+            element.speed += 1;
         }
 
 
