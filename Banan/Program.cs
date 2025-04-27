@@ -69,7 +69,7 @@ while (true)
         element.position.x = Math.Clamp(element.position.x, 0, Console.BufferWidth - 1);
         element.position.y = Math.Clamp(element.position.y, 0, Console.BufferHeight - 1);
 
-        element.speed += 1;
+        // element.speed += 1;
     }
 }
 
