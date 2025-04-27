@@ -18,7 +18,7 @@ string[] level =
 [
     "############################",
     "#..........................#",
-    "#..........................#",
+    "#....................&.....#",
     "#..........................#",
     "#..........................#",
     "#..........................#",
@@ -59,7 +59,9 @@ while (true)
     foreach (Player element in clones)
     {
         Console.SetCursorPosition(element.position.x, element.position.y);
-        Console.Write(" ");
+        string row = level[element.position.y];
+        char cellValue = row[element.position.x];
+        Console.Write(cellValue);
 
         Point direction = directionsMap[pressedKey.Key];
 
