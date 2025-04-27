@@ -16,11 +16,11 @@ clones.Add(hero);
 
 string[] level =
 [
-    "############################",
-    "#..........................#",
-    "#....................&.....#",
-    "#..........................#",
-    "#..........................#",
+    "#####################################",
+    "#...................................#",
+    "#....................&.....##########",
+    "#..............................#",
+    "#..........................#####",
     "#..........................#",
     "#..........................#",
     "#..........................#",
@@ -68,7 +68,7 @@ while (true)
         element.position.x += direction.x * element.speed;
         element.position.y += direction.y * element.speed;
 
-        element.position.x = Math.Clamp(element.position.x, 0, level[0].Length - 1);
+        element.position.x = Math.Clamp(element.position.x, 0, level[element.position.y].Length - 1);
         element.position.y = Math.Clamp(element.position.y, 0, level.Length - 1);
 
         // element.speed += 1;
