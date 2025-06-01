@@ -4,6 +4,14 @@ class Player
     public Point position;
     public int speed = 1;
     public string avatar;
+    Dictionary<ConsoleKey, string> keyActionMap = new Dictionary<ConsoleKey, string>
+    {
+        { ConsoleKey.A, "moveLeft" },
+        { ConsoleKey.D, "moveRight" },
+        { ConsoleKey.W, "moveUp" },
+        { ConsoleKey.S, "moveDown" },
+        { ConsoleKey.C, "clone" }
+    };
 
     public Player(string name, string avatar)
     {
@@ -51,6 +59,14 @@ class Player
             position = target;
             speed += 1;
         }
+    }
+
+    public string ChooseAction()
+    {
+        ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+        string chosenAction = keyActionMap.GetValueOrDefault(pressedKey.Key, "pass");
+
+        return chosenAction;
     }
 }
 

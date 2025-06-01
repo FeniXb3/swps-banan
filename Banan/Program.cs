@@ -1,12 +1,5 @@
 ﻿Console.CursorVisible = false;
 
-Dictionary<ConsoleKey, string> keyActionMap = new Dictionary<ConsoleKey, string>();
-keyActionMap.Add(ConsoleKey.A, "moveLeft");
-keyActionMap.Add(ConsoleKey.D, "moveRight");
-keyActionMap.Add(ConsoleKey.W, "moveUp");
-keyActionMap.Add(ConsoleKey.S, "moveDown");
-keyActionMap.Add(ConsoleKey.C, "clone");
-
 Dictionary<string, Point> directionsMap = new Dictionary<string, Point>();
 directionsMap.Add("moveLeft", new Point(-1, 0));
 directionsMap.Add("moveRight", new Point(1, 0));
@@ -56,9 +49,7 @@ while (true)
         Console.Write(element.avatar);
     }
 
-    ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-    string chosenAction = keyActionMap.GetValueOrDefault(pressedKey.Key, "pass");
-
+    string chosenAction = hero.ChooseAction();
     if (!directionsMap.ContainsKey(chosenAction))
     {
         if (chosenAction == "clone")
