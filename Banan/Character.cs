@@ -50,5 +50,11 @@ abstract class Character
         }
     }
 
+    public void Display()
+    {
+        Console.SetCursorPosition(position.x, position.y);
+        Console.Write(avatar);
+    }
+
     public abstract string ChooseAction();
 }

@@ -45,8 +45,7 @@ while (true)
     Console.Write(hero.speed);
     foreach (Player element in clones)
     {
-        Console.SetCursorPosition(element.position.x, element.position.y);
-        Console.Write(element.avatar);
+        element.Display();
     }
 
     string chosenAction = hero.ChooseAction();
