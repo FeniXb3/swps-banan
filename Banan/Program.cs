@@ -14,6 +14,9 @@ hero.position = startingPoint;
 List<Player> clones = new List<Player>();
 clones.Add(hero);
 
+NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L");
+npc.position = new Point(5, 5);
+
 string[] level =
 [
     "#####################################",
@@ -48,7 +51,16 @@ while (true)
         element.Display();
     }
 
+    npc.Display();
+    
+
     string chosenAction = hero.ChooseAction();
+
+    string npcAction = npc.ChooseAction();
+    Point npcDirection = directionsMap[npcAction];
+    RedrawCell(npc.position);
+    npc.Move(npcDirection, level);
+
     if (!directionsMap.ContainsKey(chosenAction))
     {
         if (chosenAction == "clone")
