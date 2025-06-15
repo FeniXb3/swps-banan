@@ -53,6 +53,11 @@ while (true)
 {
     Console.SetCursorPosition(12, 0);
     Console.Write(hero.speed);
+
+    foreach (Player element in clones)
+    {
+        element.Display();
+    }
     // foreach (Player element in clones)
     for (int i = 0; i < clones.Count; i++)
     {
