@@ -42,44 +42,48 @@ foreach (string row in level)
     Console.WriteLine(row);
 }
 
+foreach (Player element in clones)
+{
+    element.Display();
+}
+
+npc.Display();
+
 while (true)
 {
     Console.SetCursorPosition(12, 0);
     Console.Write(hero.speed);
-    foreach (Player element in clones)
+    // foreach (Player element in clones)
+    for (int i = 0; i < clones.Count; i++)
     {
+        Player element = clones[i];
         element.Display();
-    }
-
-    npc.Display();
-    
-
-    string chosenAction = hero.ChooseAction();
-
-    string npcAction = npc.ChooseAction();
-    Point npcDirection = directionsMap[npcAction];
-    RedrawCell(npc.position);
-    npc.Move(npcDirection, level);
-
-    if (!directionsMap.ContainsKey(chosenAction))
-    {
-        if (chosenAction == "clone")
+        
+        string chosenAction = element.ChooseAction();
+        if (!directionsMap.ContainsKey(chosenAction))
         {
-            Player clone = new Player(hero.name, "C");
-            clone.position = startingPoint;
-            clones.Add(clone);
+            if (chosenAction == "clone")
+            {
+                PlayerClone clone = new PlayerClone(hero.name, "C");
+                clone.position = startingPoint;
+                clones.Add(clone);
+            }
+
+            continue;
         }
 
-        continue;
-    }
-
-    foreach (Player element in clones)
-    {
         RedrawCell(element.position);
 
         Point direction = directionsMap[chosenAction];
         element.Move(direction, level);
     }
+
+    npc.Display();
+    string npcAction = npc.ChooseAction();
+    Point npcDirection = directionsMap[npcAction];
+    RedrawCell(npc.position);
+    npc.Move(npcDirection, level);
+    npc.Display();
 }
 
 Console.WriteLine("Press Space to continue...");
