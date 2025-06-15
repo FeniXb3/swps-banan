@@ -20,11 +20,35 @@ class Level
         "############################",
     ];
 
+    List<List<Cell>> levelData;
+
+    public Level()
+    {
+        levelData = new List<List<Cell>>();
+        
+        for (int y = 0; y < levelVisuals.Length; y++)
+        {
+            List<Cell> row = new List<Cell>();
+            for (int x = 0; x < levelVisuals[y].Length; x++)
+            {
+                char cellVisuals = levelVisuals[y][x];
+                Cell cell = new Cell(cellVisuals);
+                row.Add(cell);
+            }
+            levelData.Add(row);
+        }
+    }
+
+
     public void Display()
     {
-        foreach (string row in levelVisuals)
+        foreach (List<Cell> row in levelData)
         {
-            Console.WriteLine(row);
+            foreach (Cell cell in row)
+            {
+                cell.Display();
+            }
+            Console.WriteLine();
         }
     }
 
