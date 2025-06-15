@@ -70,7 +70,7 @@ while (true)
         {
             if (chosenAction == "clone")
             {
-                PlayerClone clone = new PlayerClone(hero.name, "C");
+                PlayerClone clone = new PlayerClone(element, "C");
                 clone.position = startingPoint;
                 clones.Add(clone);
             }

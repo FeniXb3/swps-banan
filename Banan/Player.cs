@@ -9,6 +9,8 @@ class Player : Character
         { ConsoleKey.C, "clone" }
     };
 
+    public string chosenAction;
+
     public Player(string name, string avatar) : base(name, avatar)
     {
     }
@@ -16,7 +18,7 @@ class Player : Character
     public override string ChooseAction()
     {
         ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-        string chosenAction = keyActionMap.GetValueOrDefault(pressedKey.Key, "pass");
+        chosenAction = keyActionMap.GetValueOrDefault(pressedKey.Key, "pass");
 
         return chosenAction;
     }
