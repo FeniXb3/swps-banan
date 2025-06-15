@@ -11,11 +11,13 @@ Player hero = new Player("Snake", "@");
 hero.speed = 1;
 hero.position = startingPoint;
 
-List<Player> clones = new List<Player>();
-clones.Add(hero);
+List<Character> characters = new List<Character>();
+characters.Add(hero);
 
 NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L");
 npc.position = new Point(5, 5);
+
+characters.Add(npc);
 
 string[] level =
 [
@@ -42,7 +44,7 @@ foreach (string row in level)
     Console.WriteLine(row);
 }
 
-foreach (Player element in clones)
+foreach (Character element in characters)
 {
     element.Display();
 }
@@ -54,15 +56,15 @@ while (true)
     Console.SetCursorPosition(12, 0);
     Console.Write(hero.speed);
 
-    foreach (Player element in clones)
+    foreach (Character element in characters)
     {
         element.Display();
     }
-    // foreach (Player element in clones)
-    int clonesAmount = clones.Count;
-    for (int i = 0; i < clonesAmount; i++)
+    
+    int charactersAmount = characters.Count;
+    for (int i = 0; i < charactersAmount; i++)
     {
-        Player element = clones[i];
+        Character element = characters[i];
         element.Display();
         
         string chosenAction = element.ChooseAction();
@@ -70,9 +72,9 @@ while (true)
         {
             if (chosenAction == "clone")
             {
-                PlayerClone clone = new PlayerClone(element, "C");
+                PlayerClone clone = new PlayerClone(hero, "C");
                 clone.position = startingPoint;
-                clones.Add(clone);
+                characters.Add(clone);
             }
 
             continue;
@@ -83,13 +85,6 @@ while (true)
         Point direction = directionsMap[chosenAction];
         element.Move(direction, level);
     }
-
-    npc.Display();
-    string npcAction = npc.ChooseAction();
-    Point npcDirection = directionsMap[npcAction];
-    RedrawCell(npc.position);
-    npc.Move(npcDirection, level);
-    npc.Display();
 }
 
 Console.WriteLine("Press Space to continue...");

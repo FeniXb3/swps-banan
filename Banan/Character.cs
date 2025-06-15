@@ -46,7 +46,7 @@ abstract class Character
         if (level[target.y][target.x] != '#')
         {
             position = target;
-            speed += 1;
+            // speed += 1;
         }
     }
 
