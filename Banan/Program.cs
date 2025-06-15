@@ -59,7 +59,8 @@ while (true)
         element.Display();
     }
     // foreach (Player element in clones)
-    for (int i = 0; i < clones.Count; i++)
+    int clonesAmount = clones.Count;
+    for (int i = 0; i < clonesAmount; i++)
     {
         Player element = clones[i];
         element.Display();
